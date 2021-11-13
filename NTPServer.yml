@@ -26,16 +26,17 @@
       service: "name=chronyd state=started enabled=yes"
       tags: chrony
     - 
-      name: "Install NTP"
-      tags: ntp
-      yum: "name=ntp state=installed"
+      name: make sure chronyd is installed
+      yum:
+       name: chrony
+       state: latest
+       update_cache: yes
     - 
       copy: "src=/etc/chrony.conf dest=/etc/chrony.conf"
       name: "Copy over the NTP configuration"
-      notify: 
-        - "restart ntpd"
       tags: ntp
     - 
-      name: "Make sure NTP is started up"
-      service: "name=ntpd state=restarted enabled=yes"
-      tags: ntp
+     name: Restart chronyd
+     service:
+      name: chronyd
+      state: restarted
