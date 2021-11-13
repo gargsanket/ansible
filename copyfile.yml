@@ -8,6 +8,7 @@
     file:
       path: "/tmp/sample-ansible-file.txt"
       state: touch
+      mode: 0755
 
 
 
