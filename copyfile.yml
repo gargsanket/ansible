@@ -3,15 +3,11 @@
   become: true
   hosts: node1
   name: "Create and copy file"
-  tasks: 
-    - 
-      name: "Create and copy file"
-      copy:
-	src: /tmp/samplefile.txt
-	dest: /tmp/samplefile.txt
-	owner: unixadm
-	group: unixadm
-	mode: 755
+  tasks:
+  - name: Creating an empty file
+    file:
+      path: "/tmp/sample-ansible-file.txt"
+      state: touch
 
 
 
